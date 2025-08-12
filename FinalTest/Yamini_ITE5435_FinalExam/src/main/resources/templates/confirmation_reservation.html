@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Reservation Confirmation</title>
+</head>
+<body>
+	<h2>Reservation Confirmation</h2>
+	
+	<h3>Your Reservation Details:</h3>
+		<pre th:text="${submittedJson}"></pre>
+	
+	<h3>Dynamic API Data:</h3>
+		<ul>
+		  <li th:each="res : ${apiDataList}">
+		    <span th:text="'Name: ' + ${res.firstName} + ' ' + ${res.lastName}"></span>
+		    <span> | Class: </span><span th:text="${res.classType}"></span>
+		  </li>
+		</ul>
+	
+	<hr/>
+	<h3>Proceed to Payment</h3>
+	<form th:action="@{/payment/save}" th:object="${payment}" method="post">
+	    Amount: <input type="number" th:field="*{amount}" required /><br/>
+	    Method: <input type="text" th:field="*{method}" required /><br/>
+	    <input type="hidden" th:field="*{reservationId}" th:value="${reservationId}" />
+	    <button type="submit">Pay Now</button>
+	</form>
+
+
+<a href="/reservation/new">Make another reservation</a>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Payment Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef3f9;
+            margin: 0;
+            padding: 0;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+            color: #2c3e50;
+        }
+        .card {
+            background: #fff;
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: #f8f9fa;
+            margin-bottom: 10px;
+            padding: 12px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+            color: #34495e;
+        }
+        a.btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background-color: #27ae60;
+            color: white;
+            padding: 10px;
+            margin-top: 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        a.btn:hover {
+            background-color: #1e8f4c;
+        }
+    </style>
+</head>
+<body>
+	<h2>Payment Submitted</h2>
+
+	<div class="card">
+	    <ul>
+	      <li th:each="pay : ${apiDataList}">
+	        <span th:text="'Amount: $' + ${pay.amount}"></span>
+	        <span th:text="' | Method: ' + ${pay.method}"></span>
+	      </li>
+	    </ul>
+	
+	    <a href="/" class="btn">Back to Home</a>
+	</div>
+
+</body>
+</html>
